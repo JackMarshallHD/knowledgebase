@@ -1,0 +1,43 @@
+// Place all the styles related to the articles controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+/* mixins, variables, etc. */
+
+$grey-background: rgba(220,220,220,.25);
+$grey-text: rgba(200,200,200, 1);
+
+$margin-medium: 10px;
+$padding-medium: 10px;
+$boarder-radius-medium: 10px;
+
+/* Articles */
+.meta-data {
+  color: $grey-text;
+}
+
+.article {
+  .article-header {
+    text-align: left;
+    margin-bottom: 10px;
+  }
+
+  .article-summary {
+    text-align: left;
+    margin-bottom: 5px;
+  }
+}
+
+.new-article{
+  #revision_text {
+    height: 500px
+  }
+}
+
+.edit-article{
+  #revision_text {
+    height: 500px
+  }
+}

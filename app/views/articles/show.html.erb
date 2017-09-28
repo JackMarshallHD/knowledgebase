@@ -1,0 +1,21 @@
+<% provide(:title, @article.title) %>
+<div class='article'>
+  <span class="article-meta">
+    <%= updated_string(@article) %> - <%= user_name(@article.revisions.last) %>
+  </span>
+  <h1 class='article-header'><%= @article.title %></h1>
+  <h2 class='article-summary'><%= @article.summary %></h2>
+  <div class='article-content'><%= @revision.text.html_safe %></div>
+</div>
+
+<div class='article-comments'>
+  <h3>Comments</h3>
+  <%= render @article.comments %>
+
+  <h4>Add a comment:</h4>
+  <%= render 'comments/form' %>
+</div>
+
+<%= link_to 'Collection', collection_path(@article.collection) %>
+| <%= link_to 'Edit', edit_article_path(@article) %>
+| <%= link_to 'Destroy', article_path(@article), method: :delete, data: { confirm: 'Delete this article?' } %>

@@ -1,0 +1,17 @@
+<footer class="footer">
+  <div class="container">
+    <small>QA Knowledge base</small>
+    <nav>
+      <ul>
+        <li><%= link_to "Sign Up", signup_path %></li>
+        <li><%= link_to "About",   about_path %></li>
+      </ul>
+    </nav>
+
+    <%= debug(params) if Rails.env.development? && params %>
+    <%= debug(@user) if Rails.env.development? && @user %>
+    <%= debug(@collection) if Rails.env.development? && @collection %>
+    <%= debug(@article) if Rails.env.development? && @article %>
+    <%= debug(@revision) if Rails.env.development? && @revision %>
+  </div>
+</footer>

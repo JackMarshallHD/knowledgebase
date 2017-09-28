@@ -1,0 +1,13 @@
+<% provide(:title, 'Collections') %>
+<div class="collection-list">
+  <% @collections.each do |collection| %>
+    <div class="box-list">
+      <div class="box-list-object">
+        <h3><%= link_to collection.title, collection_path(collection) %></h3>
+        <span class="meta-data"><%= updated_string(collection) %></span>
+        <span class="meta-data">Category - Tags</span>
+      </div>
+    </div>
+  <% end %>
+</div>
+<%= link_to 'New collection', new_collection_path %>

@@ -1,0 +1,44 @@
+<% provide(:title, @collection.title) %>
+<div class='collection'>
+  <span class="collection-meta"><%= updated_string(@collection) %></span>
+  <h1 class='collection-header'><%= @collection.title %></h1>
+  <div class='collection-description'><%= (@collection.description || '').html_safe %></div>
+</div>
+
+<div class="box-list">
+  <% @collection.articles.order(@order).each do |article| %>
+    <% if !article.hidden || @show %>
+      <div class="box-list-object">
+        <h3><%= link_to article.title, article_path(article) %></h3>
+        <span class="meta-data"><%= updated_string(article) %> by <%= user_name(article.revisions.last) %></span>
+        <span class="meta-data"><%= article.hidden ? ' - Hidden' : nil %></span>
+        <p class="article-summary"><%= article.summary %></p>
+        <span class="meta-data">Category - Tags</span>
+      </div>
+    <% end %>
+  <% end %>
+</div>
+
+<% if @collection.articles.reject { |a| a.hidden }.any? || @show %>
+    <form class="form-inline">
+    <p>
+      <select name="order" onchange="this.form.submit()">
+        <option value="id">Order articles by</option>
+        <option value="created_at">Created</option>
+        <option value="updated_at">Updated</option>
+        <option value="title">Title</option>
+      </select>
+    </p>
+    </form>
+<% end %>
+
+<%= link_to 'New article', new_collection_article_path(@collection) %> |
+<% if @show %>
+<%= link_to "Hide", collection_path(@collection, show: false) %>
+<% else %>
+<%= link_to "Show", collection_path(@collection, show: true) %>
+<% end %>
+
+| <%= link_to 'Collections', collections_path %>
+| <%= link_to 'Edit', edit_collection_path(@collection) %>
+| <%= link_to 'Destroy', collection_path(@collection), method: :delete, data: { confirm: 'Delete this collection?' } %>
